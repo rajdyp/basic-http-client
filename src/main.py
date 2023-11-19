@@ -1,4 +1,4 @@
-from http_client.client import get_website
+from http_client.client import HTTPClient
 import argparse
 
 if __name__ == "__main__":
@@ -8,4 +8,12 @@ if __name__ == "__main__":
     parser.add_argument("--path", default="/", help="Path to the homepage (default: /)")
 
     args = parser.parse_args()
-    get_website(args.server, args.port, args.path)
+
+    # create an instance of HTTPClient
+    http_client = HTTPClient(args.server, args.port)
+
+    # fetch website
+    http_client.get_website(args.path)
+
+    # close connection
+    http_client.close()
